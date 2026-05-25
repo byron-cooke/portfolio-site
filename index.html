@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byron Cooke — Visual Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #fff;
+  color: #000;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; cursor: pointer; }
+button { background: none; border: none; cursor: pointer; font: inherit; }
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --black: #000000;
+  --boulder: #7a7a7a;
+  --tundora: #474747;
+  --wild-sand: #f5f5f5;
+  --white: #ffffff;
+  --h1-size: 52px;
+  --h1-lh: 57.2px;
+  --h1-ls: -1.56px;
+  --h2-size: 18px;
+  --h2-lh: 21.6px;
+  --h2-ls: -0.54px;
+  --h3-size: 18px;
+  --h3-lh: 21.6px;
+  --h3-ls: -0.54px;
+  --body-size: 20px;
+  --body-lh: 30px;
+  --body-ls: -0.2px;
+  --link-size: 16px;
+  --link-lh: 19.2px;
+  --link-ls: -0.48px;
+  --bq-size: 24px;
+  --bq-lh: 33.6px;
+  --section-h2-size: 40px;
+  --section-h2-lh: 46px;
+  --section-h2-ls: -1.2px;
+  --px: 256px;
+  --nav-h: 80px;
+}
+
+/* ── VIEW SYSTEM ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(3px);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding: 0 160px;
+}
+.nav-inner {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 96px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+}
+.nav-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px;
+  background: var(--black);
+  transform: translateY(calc(var(--nav-h) / 2));
+}
+.nav-logo {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: var(--link-ls);
+  line-height: var(--link-lh);
+  color: var(--black);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+}
+.nav-link {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: -0.16px;
+  line-height: 24px;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link .arrow { opacity: 0.35; font-size: var(--link-size); }
+
+/* ── SHARED CONTAINER ── */
+.container {
+  padding-left: var(--px);
+  padding-right: var(--px);
+}
+
+/* ────────────────────────────────────────
+   HOME PAGE
+──────────────────────────────────────── */
+.home-hero {
+  padding: 160px var(--px) 80px;
+}
+.home-hero h1 {
+  font-size: var(--h1-size);
+  font-weight: 500;
+  line-height: var(--h1-lh);
+  letter-spacing: var(--h1-ls);
+  color: var(--black);
+  max-width: 900px;
+}
+
+/* ── WORK GRID ── */
+.work-section { padding: 0 var(--px); }
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.work-card {
+  background: var(--wild-sand);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.work-card:hover { opacity: 0.88; }
+
+.work-card-img {
+  width: 100%;
+  aspect-ratio: 692 / 432.5;
+  overflow: hidden;
+  position: relative;
+  background: #e8e8e8;
+}
+.work-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder patterns for cards without images */
+.pat-1 { background: repeating-linear-gradient(135deg,#e0e0e0,#e0e0e0 1px,#f5f5f5 1px,#f5f5f5 18px); }
+.pat-2 { background: repeating-linear-gradient(0deg,#e0e0e0 0,#e0e0e0 1px,#f5f5f5 1px,#f5f5f5 20px),repeating-linear-gradient(90deg,#e0e0e0 0,#e0e0e0 1px,#f5f5f5 1px,#f5f5f5 20px); }
+.pat-3 { background: radial-gradient(circle at 30% 60%,#d4d4d4 0%,#f5f5f5 55%),radial-gradient(circle at 75% 25%,#e0e0e0 0%,transparent 50%); }
+.pat-4 { background: repeating-linear-gradient(45deg,#e0e0e0,#e0e0e0 2px,#f5f5f5 2px,#f5f5f5 14px); }
+.pat-5 { background: repeating-conic-gradient(#e0e0e0 0% 25%,#f5f5f5 0% 50%) 0 0/22px 22px; }
+.pat-6 { background: radial-gradient(ellipse 80% 60% at 50% 50%,#d4d4d4 0%,#f5f5f5 100%); }
+.pat-7 { background: repeating-linear-gradient(90deg,#e0e0e0,#e0e0e0 1px,#f5f5f5 1px,#f5f5f5 28px); }
+.pat-8 { background: repeating-linear-gradient(0,transparent,transparent 16px,#e0e0e0 16px,#e0e0e0 17px),repeating-linear-gradient(90deg,transparent,transparent 16px,#e0e0e0 16px,#e0e0e0 17px); }
+
+.work-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px;
+}
+.work-card-name {
+  font-size: var(--h2-size);
+  font-weight: 500;
+  line-height: var(--h2-lh);
+  letter-spacing: var(--h2-ls);
+  color: var(--black);
+}
+.work-card-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--black);
+  opacity: 0.2;
+  flex-shrink: 0;
+}
+.work-card-type {
+  font-size: var(--h2-size);
+  font-weight: 500;
+  line-height: var(--h2-lh);
+  letter-spacing: var(--h2-ls);
+  color: var(--boulder);
+  text-align: right;
+}
+
+/* ── CLIENT TICKER ── */
+.ticker-section {
+  margin-top: 80px;
+  border-top: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+  overflow: hidden;
+  position: relative;
+}
+.ticker-section::before,
+.ticker-section::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.ticker-section::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.ticker-section::after  { right: 0; background: linear-gradient(to left, #fff, transparent); }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-ticker 44s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes scroll-ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  padding: 0 36px;
+  height: 60px;
+  border-right: 1.5px solid #e0e0e0;
+  flex-shrink: 0;
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: var(--link-ls);
+  color: var(--boulder);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.ticker-item:hover { color: var(--black); }
+
+/* ── CONTACT SECTION ── */
+.home-contact {
+  padding: 160px var(--px);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 334px 1fr;
+  gap: 24px;
+}
+.contact-label {
+  font-size: var(--h2-size);
+  font-weight: 500;
+  line-height: var(--h2-lh);
+  letter-spacing: var(--h2-ls);
+  color: var(--boulder);
+}
+.contact-links { display: flex; flex-direction: column; gap: 24px; }
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--black);
+}
+.contact-row-label {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  color: var(--black);
+}
+.contact-row-value {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  color: var(--black);
+}
+.contact-row-arrow {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  color: var(--black);
+  opacity: 0.35;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  padding: 0 160px;
+}
+.footer-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 160px 96px;
+  position: relative;
+}
+.footer-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 96px; right: 96px;
+  height: 2px;
+  background: var(--black);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+.footer-col { display: flex; flex-direction: column; gap: 24px; }
+.footer-name {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: var(--link-ls);
+  color: var(--black);
+}
+.footer-link {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: -0.16px;
+  line-height: 24px;
+  color: var(--black);
+}
+.footer-copy {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: -0.16px;
+  line-height: 24px;
+  color: var(--boulder);
+  text-align: right;
+}
+
+/* ────────────────────────────────────────
+   ABOUT PAGE
+──────────────────────────────────────── */
+.about-header { padding: 160px var(--px) 0; }
+.about-header h1 {
+  font-size: var(--h1-size);
+  font-weight: 500;
+  line-height: var(--h1-lh);
+  letter-spacing: var(--h1-ls);
+  color: var(--black);
+  max-width: 900px;
+}
+.about-body-text {
+  padding: 0 var(--px) 80px;
+  margin-top: 40px;
+}
+.about-body-text p {
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: var(--body-lh);
+  letter-spacing: var(--body-ls);
+  color: var(--tundora);
+  max-width: 1408px;
+}
+.about-image-wrap {
+  padding: 0 var(--px);
+}
+.about-image-wrap img {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+  max-height: 940px;
+  object-fit: cover;
+}
+.about-skills {
+  padding: 160px var(--px) 0;
+}
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: 334px 334px 334px 1fr;
+  gap: 24px;
+}
+.skills-label {
+  font-size: var(--h2-size);
+  font-weight: 500;
+  line-height: var(--h2-lh);
+  letter-spacing: var(--h2-ls);
+  color: var(--boulder);
+}
+.skills-col { display: flex; flex-direction: column; gap: 24px; }
+.skill-item {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  color: var(--black);
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--black);
+}
+
+/* ────────────────────────────────────────
+   PROJECT PAGE
+──────────────────────────────────────── */
+.project-header {
+  padding: 160px var(--px);
+}
+.project-header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.project-title {
+  font-size: var(--h1-size);
+  font-weight: 500;
+  line-height: var(--h1-lh);
+  letter-spacing: var(--h1-ls);
+  color: var(--black);
+}
+.project-intro {
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: var(--body-lh);
+  letter-spacing: var(--body-ls);
+  color: var(--tundora);
+}
+.project-back {
+  font-size: var(--link-size);
+  font-weight: 500;
+  letter-spacing: var(--link-ls);
+  color: var(--boulder);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 48px;
+  transition: color 0.15s;
+}
+.project-back:hover { color: var(--black); }
+
+.project-images {
+  padding: 0 var(--px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.project-img {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--wild-sand);
+}
+.project-img img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.project-img-placeholder {
+  width: 100%;
+  aspect-ratio: 1408 / 880;
+  background: var(--wild-sand);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--boulder);
+}
+
+.project-prose {
+  padding: 160px 610px 160px;
+}
+.project-prose p {
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: var(--body-lh);
+  letter-spacing: var(--body-ls);
+  color: var(--tundora);
+  margin-bottom: 32px;
+  max-width: 700px;
+}
+.project-prose h2 {
+  font-size: var(--section-h2-size);
+  font-weight: 500;
+  line-height: var(--section-h2-lh);
+  letter-spacing: var(--section-h2-ls);
+  color: var(--black);
+  margin-bottom: 32px;
+  margin-top: 56px;
+  max-width: 700px;
+}
+.project-prose h2:first-child { margin-top: 0; }
+.project-blockquote {
+  background: linear-gradient(134.97deg, #f5f5f5 0%, #ebebeb 100%);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0 0 32px;
+  max-width: 700px;
+  font-size: var(--bq-size);
+  font-weight: 500;
+  line-height: var(--bq-lh);
+  color: var(--black);
+}
+
+/* Other work */
+.other-work-section {
+  padding: 0 160px;
+}
+.other-work-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 160px 96px;
+  position: relative;
+}
+.other-work-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 96px; right: 96px;
+  height: 2px;
+  background: var(--black);
+}
+.other-work-label {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 27.6px;
+  letter-spacing: -0.72px;
+  color: var(--black);
+  margin-bottom: 32px;
+}
+.other-work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.other-card {
+  background: var(--wild-sand);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.other-card:hover { opacity: 0.88; }
+.other-card-img {
+  width: 100%;
+  aspect-ratio: 692 / 432.5;
+  background: #e8e8e8;
+  overflow: hidden;
+}
+.other-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.other-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px;
+}
+.other-card-name {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  color: var(--black);
+}
+.other-card-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--black); opacity: 0.2; flex-shrink: 0;
+}
+.other-card-type {
+  font-size: var(--h3-size);
+  font-weight: 500;
+  line-height: var(--h3-lh);
+  letter-spacing: var(--h3-ls);
+  color: var(--boulder);
+  text-align: right;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Byron Cooke</span>
+    <div class="nav-links">
+      <span class="nav-link" onclick="showPage('about')" style="cursor:pointer;">About</span>
+      <a class="nav-link" href="mailto:byroncooke@gmail.com">Email <span class="arrow">↗</span></a>
+      <a class="nav-link" href="https://x.com" target="_blank">Twitter <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════
+     HOME PAGE
+═══════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="home-hero">
+    <h1>I'm an independent visual designer. For the last decade, I've been crafting world class digital + print experiences. Currently based in Washington, DC.</h1>
+  </div>
+
+  <div class="work-section">
+    <div class="work-grid" id="work-grid"></div>
+  </div>
+
+  <!-- CLIENT TICKER -->
+  <div class="ticker-section">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="home-contact">
+    <div class="contact-grid">
+      <div class="contact-label">Contact</div>
+      <div class="contact-links">
+        <a class="contact-row" href="mailto:byroncooke@gmail.com">
+          <span class="contact-row-label">Email</span>
+          <span class="contact-row-value">byroncooke@gmail.com</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://www.behance.net/bcooke" target="_blank">
+          <span class="contact-row-label">Behance</span>
+          <span class="contact-row-value">bcooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://dribbble.com/byroncooke" target="_blank">
+          <span class="contact-row-label">Dribbble</span>
+          <span class="contact-row-value">byroncooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/in/byron-cooke-4748aa2a0/" target="_blank">
+          <span class="contact-row-label">LinkedIn</span>
+          <span class="contact-row-value">byron-cooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="footer-name">Byron Cooke</span>
+        </div>
+        <div class="footer-col">
+          <a class="footer-link" href="https://www.behance.net/bcooke" target="_blank">Behance</a>
+          <a class="footer-link" href="https://dribbble.com/byroncooke" target="_blank">Dribbble</a>
+          <a class="footer-link" href="https://www.linkedin.com/in/byron-cooke-4748aa2a0/" target="_blank">LinkedIn</a>
+          <a class="footer-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:US:ab5ca72b-6d16-482c-aa19-0a8cfa9971b8" target="_blank">Résumé</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-link">Built by Byron Cooke</span>
+          <a class="footer-link" href="mailto:byroncooke@gmail.com">Get in touch</a>
+        </div>
+        <div>
+          <div class="footer-copy">©2026</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ═══════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <div class="about-header">
+    <h1>About Byron</h1>
+  </div>
+
+  <div class="about-body-text">
+    <p>I'm a multidisciplinary graphic designer based in the Washington, DC area with 15+ years of experience creating thoughtful, visually engaging work across digital, print, branding, presentations, and web design. My background spans agencies, nonprofits, advocacy organizations, corporate brands, and government-focused communications, giving me the ability to adapt across industries and audiences with ease.</p>
+  </div>
+
+  <div class="about-image-wrap">
+    <img src="https://www.figma.com/api/mcp/asset/d75227fe-2b94-4844-a494-08106397f001" alt="Byron Cooke" onerror="this.style.background='#f5f5f5';this.style.minHeight='600px';">
+  </div>
+
+  <div class="about-skills">
+    <div class="about-skills-grid">
+      <div class="skills-label">Skills</div>
+      <div class="skills-col">
+        <div class="skill-item">Interface design</div>
+        <div class="skill-item">Visual design</div>
+        <div class="skill-item">Design systems</div>
+        <div class="skill-item">Brand identity</div>
+      </div>
+      <div class="skills-col">
+        <div class="skill-item">Print & editorial</div>
+        <div class="skill-item">Presentation design</div>
+        <div class="skill-item">Exhibition design</div>
+        <div class="skill-item">Campaign design</div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT (same as home) -->
+  <div class="home-contact">
+    <div class="contact-grid">
+      <div class="contact-label">Contact</div>
+      <div class="contact-links">
+        <a class="contact-row" href="mailto:byroncooke@gmail.com">
+          <span class="contact-row-label">Email</span>
+          <span class="contact-row-value">byroncooke@gmail.com</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://www.behance.net/bcooke" target="_blank">
+          <span class="contact-row-label">Behance</span>
+          <span class="contact-row-value">bcooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://dribbble.com/byroncooke" target="_blank">
+          <span class="contact-row-label">Dribbble</span>
+          <span class="contact-row-value">byroncooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/in/byron-cooke-4748aa2a0/" target="_blank">
+          <span class="contact-row-label">LinkedIn</span>
+          <span class="contact-row-value">byron-cooke</span>
+          <span class="contact-row-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col"><span class="footer-name">Byron Cooke</span></div>
+        <div class="footer-col">
+          <a class="footer-link" href="https://www.behance.net/bcooke" target="_blank">Behance</a>
+          <a class="footer-link" href="https://dribbble.com/byroncooke" target="_blank">Dribbble</a>
+          <a class="footer-link" href="https://www.linkedin.com/in/byron-cooke-4748aa2a0/" target="_blank">LinkedIn</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-link">Built by Byron Cooke</span>
+          <a class="footer-link" href="mailto:byroncooke@gmail.com">Get in touch</a>
+        </div>
+        <div><div class="footer-copy">©2026</div></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Project pages injected here -->
+<div id="project-pages"></div>
+
+<script>
+// ── ASSETS FROM FIGMA ──────────────────────────────────────────
+const ASSETS = {
+  bge:        'https://www.figma.com/api/mcp/asset/ace1f133-399f-4d5e-8588-cc9200819332',
+  medtech:    'https://www.figma.com/api/mcp/asset/c9fd10dc-3d82-471a-b0be-ea5da33a55d2',
+  harris:     'https://www.figma.com/api/mcp/asset/9b351329-b82d-410b-810b-1679cd23f241',
+  georgetown: 'https://www.figma.com/api/mcp/asset/e3640f23-1d63-4cd2-8083-4bcf4ed8e34d',
+  dhs:        'https://www.figma.com/api/mcp/asset/f891ee9a-d7ab-45aa-bf23-ded781ca8031',
+  astra:      'https://www.figma.com/api/mcp/asset/1a2cf679-0572-4840-ac80-db4d09e1b2da',
+  // Project page images
+  proj1: 'https://www.figma.com/api/mcp/asset/211a4e4c-a2d5-4bf7-8633-ea4114a21e80',
+  proj2: 'https://www.figma.com/api/mcp/asset/d6f3f2af-98e5-4b91-8289-78b8d01bf97b',
+  proj3: 'https://www.figma.com/api/mcp/asset/86b5fe30-8e75-4bc7-94c7-0cc37532b44a',
+  proj4: 'https://www.figma.com/api/mcp/asset/8f6d27d2-c593-40e2-835d-f12dbde99641',
+  proj5: 'https://www.figma.com/api/mcp/asset/2ad8561a-c425-48e1-af40-39b6934a1249',
+};
+
+// ── PROJECT DATA ───────────────────────────────────────────────
+const PROJECTS = [
+  {
+    id: 'bge-hello-hotness',
+    name: 'BGE Hello Hotness',
+    type: 'Campaign design',
+    thumb: ASSETS.bge,
+    pat: 'pat-1',
+    intro: 'A summer energy campaign for Baltimore Gas & Electric — balancing urgency with warmth across broadcast, digital, and out-of-home formats simultaneously.',
+    images: [ASSETS.proj1, ASSETS.proj2, ASSETS.proj3],
+    prose: [
+      { type: 'p', text: 'Utility brands occupy a peculiar space in the public imagination — necessary, occasionally resented, rarely loved. BGE needed messaging that communicated real financial benefit without feeling like a government announcement. Approachability and credibility had to coexist in every asset, across broadcast, digital display, social media, direct mail, and in-branch signage.' },
+      { type: 'h2', text: 'Visual language' },
+      { type: 'p', text: 'The visual language centered on a bold typographic lockup paired with high-contrast photography. Color blocking created immediate legibility at scale; the type hierarchy was engineered so the key message landed in under two seconds — the realistic window for an outdoor or pre-roll impression.' },
+      { type: 'bq', text: 'The brief was deceptively simple: make saving energy feel like a good idea in August.' },
+      { type: 'p', text: 'A modular Figma system let the in-house team build new executions without breaking the campaign aesthetic. Templates were documented with locked zones and flexible regions, reducing production time on downstream assets significantly.' },
+      { type: 'h2', text: 'Deliverables' },
+      { type: 'p', text: 'The campaign ran across the Baltimore metro area through July and August — OOH, digital display (300×250, 728×90, and responsive formats), direct mail to target ZIP codes, and a full suite of Meta social assets for organic and paid placement.' },
+    ]
+  },
+  {
+    id: 'bge-save-energy',
+    name: 'BGE Save on Energy Costs',
+    type: 'Campaign design',
+    thumb: ASSETS.bge,
+    pat: 'pat-2',
+    intro: 'A companion campaign targeting customers who respond to concrete savings over ambient environmental messaging. The design challenge: make a utility bill feel like an opportunity.',
+    images: [ASSETS.proj2, ASSETS.proj3, ASSETS.proj4],
+    prose: [
+      { type: 'p', text: 'Research consistently shows BGE-area customers respond more strongly to dollar-denominated savings than to percentage reductions or environmental framings. Campaign copy and visual hierarchy were built around this insight — specific numbers, prominently placed, with a clear path to enrollment.' },
+      { type: 'h2', text: 'Landing page' },
+      { type: 'p', text: 'The landing page experience was designed to reduce friction between ad click and form completion. Visual hierarchy guided users from the headline benefit through program details to a single clear call to action. Secondary information was available but never competed for attention.' },
+      { type: 'bq', text: 'Make a utility bill feel like an opportunity.' },
+      { type: 'h2', text: 'System consistency' },
+      { type: 'p', text: 'Both BGE campaigns shared a parent visual system while maintaining distinct tones. Hello Hotness ran warmer and more expressive; Save on Energy Costs ran cleaner and more data-forward. The shared typographic skeleton let both coexist in market without visual confusion.' },
+    ]
+  },
+  {
+    id: 'marriott-bonvoy',
+    name: 'Marriott Bonvoy',
+    type: 'UX design',
+    thumb: ASSETS.medtech,
+    pat: 'pat-3',
+    intro: 'UX design for one of the world\'s largest hotel loyalty programs — 30 brands, 8,000+ properties, tens of millions of active members. Design at this scale is less about invention than precision.',
+    images: [ASSETS.proj1, ASSETS.proj3, ASSETS.proj5],
+    prose: [
+      { type: 'p', text: 'The engagement focused on several high-traffic member-facing screens: the dashboard, the points activity view, and the offer discovery experience. Each had accrued years of incremental additions that compromised the original hierarchy and made the interface harder to parse at a glance.' },
+      { type: 'h2', text: 'Process' },
+      { type: 'p', text: 'The work began with an audit of existing screens against the Bonvoy design system — identifying where components were being used inconsistently, where hierarchy had been diluted, and where user testing data pointed to confusion. Findings were documented and prioritized before any redesign work began.' },
+      { type: 'bq', text: 'Design at this scale is less about invention than about precision.' },
+      { type: 'p', text: 'Proposed changes were scoped to work within the existing component library wherever possible, to reduce engineering overhead and maintain brand continuity. Where gaps in the system required new components, these were documented with usage guidelines and handed off for review.' },
+    ]
+  },
+  {
+    id: 'no-one-missed',
+    name: 'No One Missed',
+    type: 'Web & graphic design',
+    thumb: ASSETS.harris,
+    pat: 'pat-4',
+    intro: 'A considered web presence built around absence and commemoration. The design brief was not to beautify the subject matter, but to hold it.',
+    images: [ASSETS.proj2, ASSETS.proj4, ASSETS.proj5],
+    prose: [
+      { type: 'p', text: 'The instinct with emotionally heavy subject matter is often to soften it — to reach for color or warmth that creates distance between the viewer and the content. The opposite decision was made here. The site runs near-monochrome, with generous negative space that forces the reader to sit with each piece of content rather than scan past it.' },
+      { type: 'bq', text: 'The design brief was not to beautify this, but to hold it.' },
+      { type: 'h2', text: 'Typography as structure' },
+      { type: 'p', text: 'Type does all the structural work. A single family carries every level of hierarchy — differentiated by size, weight, and spacing rather than competing typefaces. The result feels like a document: intentional, considered, undecorated. Navigation is minimal by design — the site encourages reading, not browsing.' },
+    ]
+  },
+  {
+    id: 'georgetown',
+    name: 'Georgetown University',
+    type: 'Digital & editorial design',
+    thumb: ASSETS.georgetown,
+    pat: 'pat-5',
+    intro: 'Georgetown\'s visual communications span an unusually broad range — from recruitment materials that convey aspiration, to instructional content that transmits information clearly, to institutional publications reflecting the university\'s 230-year history.',
+    images: [ASSETS.proj3, ASSETS.proj1, ASSETS.proj4],
+    prose: [
+      { type: 'p', text: 'The web work focused on program-level microsites and departmental pages within Georgetown\'s digital ecosystem. Each had to function within the university design system while allowing enough flexibility for individual programs to establish a distinct identity.' },
+      { type: 'h2', text: 'Instructional design' },
+      { type: 'p', text: 'The instructional work covered visual design for online course materials — slides, downloadable resources, and in-platform graphics. Academic content is often visually under-served; the work treated instructional materials with the same rigor applied to marketing and editorial outputs.' },
+      { type: 'bq', text: 'Brand standards and local expression — careful negotiation between both.' },
+      { type: 'h2', text: 'Print' },
+      { type: 'p', text: 'Editorial design for a flagship Georgetown prospectus distributed to prospective graduate students. Grid, type, and image direction were established at the brief stage and maintained consistently across 48 pages — authoritative, intellectual, and unhurried.' },
+    ]
+  },
+  {
+    id: 'dhs',
+    name: 'Dept. of Homeland Security',
+    type: 'Exhibition design',
+    thumb: ASSETS.dhs,
+    pat: 'pat-6',
+    intro: 'Exhibition and print design for DHS — a context where credibility and legibility are not aesthetic preferences but functional requirements.',
+    images: [ASSETS.proj5, ASSETS.proj2, ASSETS.proj3],
+    prose: [
+      { type: 'p', text: 'Large-format exhibition graphics require a different design calculus than screen or print work. Type must be legible at distances where detail is lost; color must read under variable lighting; information hierarchy must be apprehensible in seconds of passing attention.' },
+      { type: 'bq', text: 'No room for ambiguity in either the message or the visual system that carries it.' },
+      { type: 'h2', text: 'Wayfinding & collateral' },
+      { type: 'p', text: 'Beyond the main exhibition graphics, the scope included directional signage, tabletop materials, and a suite of leave-behind print collateral. Each piece was designed to a consistent visual standard while serving its specific function.' },
+      { type: 'p', text: 'All files were prepared for large-format output with appropriate resolution, color profile, and bleed specifications. Production coordination with the print vendor was part of the engagement.' },
+    ]
+  },
+  {
+    id: 'hiv-gov',
+    name: 'HIV.gov at CROI 2024',
+    type: 'Exhibition & social design',
+    thumb: ASSETS.astra,
+    pat: 'pat-7',
+    intro: 'HIV.gov\'s presence at CROI 2024 — the leading scientific meeting in HIV research. The visual language had to bridge a public health communications platform and a room full of researchers and clinicians.',
+    images: [ASSETS.proj4, ASSETS.proj1, ASSETS.proj5],
+    prose: [
+      { type: 'p', text: 'The booth graphics extended HIV.gov\'s established brand system into a three-dimensional environment — translating a digital identity into large-format panels, backlit displays, and tabletop materials calibrated for the convention center environment.' },
+      { type: 'bq', text: 'The visual language had to work in both registers — public health platform and scientific conference.' },
+      { type: 'h2', text: 'Social media' },
+      { type: 'p', text: 'The conference social content ran across HIV.gov\'s Twitter/X, Instagram, and LinkedIn during the five-day event — pre-conference awareness, live session quote cards, and post-conference recap content, all templated for rapid production during the event itself.' },
+    ]
+  },
+  {
+    id: 'apco',
+    name: 'APCO Worldwide',
+    type: 'Brand & editorial design',
+    thumb: ASSETS.medtech,
+    pat: 'pat-8',
+    intro: 'Graphic design, web, and editorial work for a global advisory firm — where visual communication must carry the same precision as the strategic counsel it represents.',
+    images: [ASSETS.proj2, ASSETS.proj5, ASSETS.proj3],
+    prose: [
+      { type: 'p', text: 'The editorial work centered on thought leadership publications — the long-form reports and white papers advisory firms use to establish authority and drive business development. Layout, type, and information design were applied consistently across a series of publications, establishing a recognizable APCO editorial standard.' },
+      { type: 'bq', text: 'The visual work that supports their counsel must be commensurately precise.' },
+      { type: 'h2', text: 'Web & presentations' },
+      { type: 'p', text: 'Web graphics for APCO\'s digital properties at high volume on an editorial schedule, plus executive presentation design for client-facing decks used in meetings with CEOs, government ministers, and board members. A master Figma template was delivered with documented usage guidelines.' },
+    ]
+  },
+];
+
+const CLIENTS = [
+  'Marriott Bonvoy','BGE','Georgetown University','Dept. of Homeland Security',
+  'HIV.gov','APCO Worldwide','Bluemercury','FEMA','HHS',
+  'Salt River Project','Scoop News Group','ARISE-HF','Deliver Strategies','OIDP / PACHA'
+];
+
+// ── BUILD WORK GRID ─────────────────────────────────────────────
+const grid = document.getElementById('work-grid');
+PROJECTS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'work-card';
+  const imgHTML = p.thumb
+    ? `<img src="${p.thumb}" alt="${p.name}" onerror="this.parentElement.className='work-card-img ${p.pat}';this.remove();">`
+    : '';
+  card.innerHTML = `
+    <div class="work-card-img ${p.thumb ? '' : p.pat}">${imgHTML}</div>
+    <div class="work-card-meta">
+      <span class="work-card-name">${p.name}</span>
+      <span class="work-card-dot"></span>
+      <span class="work-card-type">${p.type}</span>
+    </div>
+  `;
+  card.addEventListener('click', () => showProject(p.id));
+  grid.appendChild(card);
+});
+
+// ── BUILD TICKER ────────────────────────────────────────────────
+const track = document.getElementById('ticker-track');
+[...CLIENTS, ...CLIENTS].forEach(c => {
+  const el = document.createElement('div');
+  el.className = 'ticker-item';
+  el.textContent = c;
+  track.appendChild(el);
+});
+
+// ── BUILD PROJECT PAGES ─────────────────────────────────────────
+const container = document.getElementById('project-pages');
+
+PROJECTS.forEach(p => {
+  const others = PROJECTS.filter(r => r.id !== p.id).slice(0, 2);
+
+  const imgsHTML = p.images.map(src =>
+    `<div class="project-img"><img src="${src}" alt="" onerror="this.parentElement.className='project-img-placeholder';this.remove();this.parentElement.textContent='Project image';" style="width:100%;display:block;"></div>`
+  ).join('');
+
+  const proseHTML = p.prose.map(s => {
+    if (s.type === 'h2') return `<h2>${s.text}</h2>`;
+    if (s.type === 'bq') return `<div class="project-blockquote">${s.text}</div>`;
+    return `<p>${s.text}</p>`;
+  }).join('');
+
+  const othersHTML = others.map(o => `
+    <div class="other-card" onclick="showProject('${o.id}')">
+      <div class="other-card-img ${o.thumb ? '' : o.pat}">
+        ${o.thumb ? `<img src="${o.thumb}" alt="${o.name}" onerror="this.parentElement.className='other-card-img ${o.pat}';this.remove();">` : ''}
+      </div>
+      <div class="other-card-meta">
+        <span class="other-card-name">${o.name}</span>
+        <span class="other-card-dot"></span>
+        <span class="other-card-type">${o.type}</span>
+      </div>
+    </div>
+  `).join('');
+
+  const div = document.createElement('div');
+  div.className = 'page';
+  div.id = `page-${p.id}`;
+  div.innerHTML = `
+    <div class="project-header">
+      <button class="project-back" onclick="showPage('home')">← Work</button>
+      <div class="project-header-grid">
+        <h1 class="project-title">${p.name}</h1>
+        <p class="project-intro">${p.intro}</p>
+      </div>
+    </div>
+
+    <div class="project-images">${imgsHTML}</div>
+
+    <div class="project-prose">${proseHTML}</div>
+
+    <div class="other-work-section">
+      <div class="other-work-inner">
+        <div class="other-work-label">Other work</div>
+        <div class="other-work-grid">${othersHTML}</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-col"><span class="footer-name">Byron Cooke</span></div>
+          <div class="footer-col">
+            <a class="footer-link" href="https://www.behance.net/bcooke" target="_blank">Behance</a>
+            <a class="footer-link" href="https://dribbble.com/byroncooke" target="_blank">Dribbble</a>
+            <a class="footer-link" href="https://www.linkedin.com/in/byron-cooke-4748aa2a0/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-link">Built by Byron Cooke</span>
+            <a class="footer-link" href="mailto:byroncooke@gmail.com">Get in touch</a>
+          </div>
+          <div><div class="footer-copy">©2026</div></div>
+        </div>
+      </div>
+    </footer>
+  `;
+  container.appendChild(div);
+});
+
+// ── ROUTING ─────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById(`page-${id}`);
+  if (el) { el.classList.add('active'); window.scrollTo(0, 0); }
+}
+
+function showProject(id) {
+  showPage(id);
+}
+</script>
+</body>
+</html>
