@@ -65,7 +65,6 @@ nav {
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  padding: 0 160px;
 }
 .nav-inner {
   width: 100%;
@@ -109,6 +108,16 @@ nav {
   gap: 6px;
 }
 .nav-link .arrow { opacity: 0.35; font-size: var(--link-size); }
+/* ── BOUNDED: all content sections match nav column ── */
+.bounded {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 96px;
+  padding-right: 96px;
+}
+/* Nav outer element should match */
+
 /* ── SHARED CONTAINER ── */
 .container {
   padding-left: var(--px);
@@ -118,7 +127,7 @@ nav {
    HOME PAGE
 ──────────────────────────────────────── */
 .home-hero {
-  padding: 160px var(--px) 80px;
+  padding: 160px 0 80px;
 }
 .home-hero h1 {
   font-size: var(--h1-size);
@@ -129,7 +138,7 @@ nav {
   max-width: 900px;
 }
 /* ── WORK GRID ── */
-.work-section { padding: 0 var(--px); }
+.work-section { padding: 0; }
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -234,7 +243,7 @@ nav {
 }
 /* ── CONTACT SECTION ── */
 .home-contact {
-  padding: 80px var(--px) 160px;
+  padding: 80px 0 160px;
 }
 .contact-grid {
   display: grid;
@@ -279,7 +288,7 @@ nav {
 }
 /* ── FOOTER ── */
 .site-footer {
-  padding: 0 160px;
+  /* outer container - no horiz padding, footer-inner handles it */
 }
 .footer-inner {
   max-width: 1600px;
@@ -324,7 +333,7 @@ nav {
 /* ────────────────────────────────────────
    ABOUT PAGE
 ──────────────────────────────────────── */
-.about-header { padding: 160px var(--px) 0; }
+.about-header { padding: 160px 0 0; }
 .about-header h1 {
   font-size: var(--h1-size);
   font-weight: 500;
@@ -334,7 +343,7 @@ nav {
   max-width: 900px;
 }
 .about-body-text {
-  padding: 0 var(--px) 80px;
+  padding: 0 0 80px;
   margin-top: 40px;
 }
 .about-body-text p {
@@ -346,7 +355,7 @@ nav {
   max-width: 1408px;
 }
 .about-image-wrap {
-  padding: 0 var(--px);
+  padding: 0;
 }
 .about-image-wrap img {
   width: 100%;
@@ -356,7 +365,7 @@ nav {
   object-fit: cover;
 }
 .about-skills {
-  padding: 160px var(--px) 0;
+  padding: 160px 0 0;
 }
 .about-skills-grid {
   display: grid;
@@ -384,7 +393,7 @@ nav {
    PROJECT PAGE
 ──────────────────────────────────────── */
 .project-header {
-  padding: 160px var(--px);
+  padding: 160px 0;
 }
 .project-header-grid {
   display: grid;
@@ -419,7 +428,7 @@ nav {
 }
 .project-back:hover { color: var(--black); }
 .project-images {
-  padding: 0 var(--px);
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -448,7 +457,8 @@ nav {
   color: var(--boulder);
 }
 .project-prose {
-  padding: 160px 610px 160px;
+  padding: 160px 0;
+  max-width: 700px;
 }
 .project-prose p {
   font-size: var(--body-size);
@@ -483,7 +493,7 @@ nav {
 }
 /* Other work */
 .other-work-section {
-  padding: 0 160px;
+  /* outer container */
 }
 .other-work-inner {
   max-width: 1600px;
@@ -568,18 +578,19 @@ nav {
      HOME PAGE
 ═══════════════════════════════ -->
 <div class="page active" id="page-home">
-  <div class="home-hero">
+  <div class="home-hero bounded">
     <h1>I'm an independent visual designer. For the last decade, I've been crafting world class digital + print experiences. Currently based in Washington, DC.</h1>
   </div>
-  <div class="work-section">
+  <div class="work-section bounded">
     <div class="work-grid" id="work-grid"></div>
   </div>
+
   <!-- CLIENT TICKER -->
   <div class="ticker-section">
     <div class="ticker-track" id="ticker-track"></div>
   </div>
   <!-- CONTACT -->
-  <div class="home-contact">
+  <div class="home-contact bounded">
     <div class="contact-grid">
       <div class="contact-label">Contact</div>
       <div class="contact-links">
@@ -634,17 +645,18 @@ nav {
      ABOUT PAGE
 ═══════════════════════════════ -->
 <div class="page" id="page-about">
-  <div class="about-header">
+  <div class="about-header bounded">
     <h1>About Byron</h1>
   </div>
-  <div class="about-body-text">
+
+  <div class="about-body-text bounded">
     <p>I'm a multidisciplinary graphic designer based in the Washington, DC area with 15+ years of experience creating thoughtful, visually engaging work across digital, print, branding, presentations, and web design. My background spans agencies, nonprofits, advocacy organizations, corporate brands, and government-focused communications, giving me the ability to adapt quickly, solve creative problems efficiently, and design for a wide range of audiences and platforms. Over the years, I've worked on everything from campaign branding and social media systems to event collateral, marketing campaigns, reports, and UI-focused digital experiences.</p>
     <p style="margin-top:2rem;">I enjoy building clean, impactful visuals that balance strong aesthetics with clear communication and strategic thinking. Whether collaborating with marketers, developers, creative directors, or stakeholders, I value being someone who can translate ideas into polished, effective creative solutions. I work across industry-standard creative, web, presentation, and AI-assisted design platforms to streamline workflows while maintaining a strong visual perspective and attention to detail.</p>
   </div>
-  <div class="about-image-wrap">
+  <div class="about-image-wrap bounded">
     <img src="https://www.figma.com/api/mcp/asset/d75227fe-2b94-4844-a494-08106397f001" alt="Byron Cooke" onerror="this.style.background='#f5f5f5';this.style.minHeight='600px';">
   </div>
-  <div class="about-skills">
+  <div class="about-skills bounded">
     <div class="about-skills-grid">
       <div class="skills-label">Skills</div>
       <div class="skills-col">
@@ -663,7 +675,7 @@ nav {
     </div>
   </div>
   <!-- CONTACT (same as home) -->
-  <div class="home-contact">
+  <div class="home-contact bounded">
     <div class="contact-grid">
       <div class="contact-label">Contact</div>
       <div class="contact-links">
@@ -929,15 +941,18 @@ PROJECTS.forEach(p => {
   div.className = 'page';
   div.id = `page-${p.id}`;
   div.innerHTML = `
-    <div class="project-header">
+    <div class="project-header bounded">
       <button class="project-back" onclick="showPage('home')">← Work</button>
       <div class="project-header-grid">
         <h1 class="project-title">${p.name}</h1>
         <p class="project-intro">${p.intro}</p>
       </div>
     </div>
-    <div class="project-images">${imgsHTML}</div>
-    <div class="project-prose">${proseHTML}</div>
+
+    <div class="project-images bounded">${imgsHTML}</div>
+
+    <div class="project-prose bounded">${proseHTML}</div>
+
     <div class="other-work-section">
       <div class="other-work-inner">
         <div class="other-work-label">Other work</div>
