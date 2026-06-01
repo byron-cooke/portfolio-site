@@ -725,17 +725,15 @@ nav {
 <script>
 // ── ASSETS FROM FIGMA ──────────────────────────────────────────
 const ASSETS = {
-  bge:        'https://www.figma.com/api/mcp/asset/ace1f133-399f-4d5e-8588-cc9200819332',
-  medtech:    'https://www.figma.com/api/mcp/asset/c9fd10dc-3d82-471a-b0be-ea5da33a55d2',
-  harris:     'https://www.figma.com/api/mcp/asset/9b351329-b82d-410b-810b-1679cd23f241',
-  georgetown: 'https://www.figma.com/api/mcp/asset/e3640f23-1d63-4cd2-8083-4bcf4ed8e34d',
-  dhs:        'https://www.figma.com/api/mcp/asset/f891ee9a-d7ab-45aa-bf23-ded781ca8031',
-  astra:      'https://www.figma.com/api/mcp/asset/1a2cf679-0572-4840-ac80-db4d09e1b2da',
-  proj1: 'https://www.figma.com/api/mcp/asset/211a4e4c-a2d5-4bf7-8633-ea4114a21e80',
-  proj2: 'https://www.figma.com/api/mcp/asset/d6f3f2af-98e5-4b91-8289-78b8d01bf97b',
-  proj3: 'https://www.figma.com/api/mcp/asset/86b5fe30-8e75-4bc7-94c7-0cc37532b44a',
-  proj4: 'https://www.figma.com/api/mcp/asset/8f6d27d2-c593-40e2-835d-f12dbde99641',
-  proj5: 'https://www.figma.com/api/mcp/asset/2ad8561a-c425-48e1-af40-39b6934a1249',
+  bge:         'images/image_1.png',
+  georgetown:  'images/image_2.png',
+  scoop:       'images/image_3.png',
+  dhs:         'images/image_4.png',
+  advamed:     'images/image_5.png',
+  deliver:     'images/image_6.png',
+  astrazeneca: 'images/image_7.png',
+  marriott:    'images/image_8.png',
+
 };
 // ── INLINE SVG LOGOS ──────────────────────────────────────────
 const LOGOS = [
@@ -758,7 +756,7 @@ const PROJECTS = [
     thumb: ASSETS.bge,
     pat: 'pat-1',
     intro: 'A series of energy-efficiency campaigns for Baltimore Gas & Electric — balancing urgency with warmth across broadcast, digital, OOH, and direct mail simultaneously.',
-    images: [ASSETS.proj1, ASSETS.proj2, ASSETS.proj3],
+    images: [ASSETS.bge, ASSETS.bge, ASSETS.bge],
     prose: [
       { type: 'p', text: 'Utility brands occupy a peculiar space in the public imagination — necessary, occasionally resented, rarely loved. BGE needed messaging that communicated real financial benefit without feeling like a government announcement. Approachability and credibility had to coexist in every asset, across broadcast, digital display, social media, direct mail, and in-branch signage.' },
       { type: 'h2', text: 'Visual language' },
@@ -776,7 +774,7 @@ const PROJECTS = [
     thumb: ASSETS.georgetown,
     pat: 'pat-2',
     intro: 'Georgetown\'s visual communications span an unusually broad range — from recruitment materials that convey aspiration, to instructional content that transmits information clearly, to institutional publications reflecting 230 years of history.',
-    images: [ASSETS.proj3, ASSETS.proj1, ASSETS.proj4],
+    images: [ASSETS.georgetown, ASSETS.georgetown, ASSETS.georgetown],
     prose: [
       { type: 'p', text: 'The web work focused on program-level microsites and departmental pages within Georgetown\'s digital ecosystem. Each had to function within the university design system while allowing enough flexibility for individual programs to establish a distinct identity — a balance requiring careful negotiation between brand standards and local expression.' },
       { type: 'h2', text: 'Instructional design' },
@@ -790,10 +788,10 @@ const PROJECTS = [
     id: 'scoop',
     name: 'Scoop News Group',
     type: 'Presentation & editorial design',
-    thumb: ASSETS.harris,
+    thumb: ASSETS.scoop,
     pat: 'pat-3',
     intro: 'Brand and editorial design for Scoop News Group — building a visual system that could hold authoritative journalism while remaining flexible enough for a fast-moving digital newsroom.',
-    images: [ASSETS.proj2, ASSETS.proj4, ASSETS.proj5],
+    images: [ASSETS.scoop, ASSETS.scoop, ASSETS.scoop],
     prose: [
       { type: 'p', text: 'Scoop News Group operates several high-profile political and policy publications. The design challenge was creating a cohesive brand architecture that unified the group\'s properties while preserving each title\'s distinct editorial voice.' },
       { type: 'h2', text: 'Editorial system' },
@@ -809,7 +807,7 @@ const PROJECTS = [
     thumb: ASSETS.dhs,
     pat: 'pat-4',
     intro: 'Exhibition and print design for DHS — a context where credibility and legibility are not aesthetic preferences but functional requirements.',
-    images: [ASSETS.proj5, ASSETS.proj2, ASSETS.proj3],
+    images: [ASSETS.dhs, ASSETS.dhs, ASSETS.dhs],
     prose: [
       { type: 'p', text: 'Large-format exhibition graphics require a different design calculus than screen or print work. Type must be legible at distances where detail is lost; color must read under variable lighting; information hierarchy must be apprehensible in seconds of passing attention.' },
       { type: 'bq', text: 'No room for ambiguity in either the message or the visual system that carries it.' },
@@ -822,10 +820,10 @@ const PROJECTS = [
     id: 'advamed',
     name: 'AdvaMed',
     type: 'Exhibition & digital design',
-    thumb: ASSETS.medtech,
+    thumb: ASSETS.advamed,
     pat: 'pat-5',
     intro: 'Conference and event design for AdvaMed — the world\'s largest medical technology trade association. Scale, credibility, and clarity in equal measure.',
-    images: [ASSETS.proj3, ASSETS.proj1, ASSETS.proj5],
+    images: [ASSETS.advamed, ASSETS.advamed, ASSETS.advamed],
     prose: [
       { type: 'p', text: 'AdvaMed\'s annual conference brings together thousands of medtech executives, clinicians, and policymakers. The design scope covered the full event graphic environment — from pre-conference campaign materials to on-site exhibition graphics and post-event digital content.' },
       { type: 'h2', text: 'Environmental design' },
@@ -839,10 +837,10 @@ const PROJECTS = [
     id: 'deliver',
     name: 'Deliver Strategies',
     type: 'Campaign design',
-    thumb: ASSETS.proj4,
+    thumb: ASSETS.deliver,
     pat: 'pat-6',
     intro: 'Brand identity and presentation design for Deliver Strategies — a political and advocacy communications firm where every deck goes in front of high-stakes audiences.',
-    images: [ASSETS.proj4, ASSETS.proj2, ASSETS.proj3],
+    images: [ASSETS.deliver, ASSETS.deliver, ASSETS.deliver],
     prose: [
       { type: 'p', text: 'Deliver Strategies works with campaigns, issue advocacy organizations, and corporate clients navigating high-stakes communications environments. The design work reflected this — precise, credible, and built to perform in a conference room or on a screen.' },
       { type: 'h2', text: 'Identity system' },
@@ -856,10 +854,10 @@ const PROJECTS = [
     id: 'astrazeneca',
     name: 'AstraZeneca',
     type: 'Digital design',
-    thumb: ASSETS.astra,
+    thumb: ASSETS.astrazeneca,
     pat: 'pat-7',
     intro: 'Digital and campaign design for AstraZeneca — translating complex pharmaceutical messaging into clear, compelling creative across digital, event, and print channels.',
-    images: [ASSETS.proj5, ASSETS.proj3, ASSETS.proj1],
+    images: [ASSETS.astrazeneca, ASSETS.astrazeneca, ASSETS.astrazeneca],
     prose: [
       { type: 'p', text: 'Pharmaceutical communications demand a particular kind of design discipline — claims must be precise, visual hierarchy must serve comprehension, and every execution must work within strict regulatory frameworks. The design work operated confidently within these constraints.' },
       { type: 'h2', text: 'Campaign design' },
@@ -873,10 +871,10 @@ const PROJECTS = [
     id: 'marriott',
     name: 'Marriott International',
     type: 'UX design',
-    thumb: ASSETS.proj2,
+    thumb: ASSETS.marriott,
     pat: 'pat-8',
     intro: 'UX design for one of the world\'s largest hotel loyalty programs — 30 brands, 8,000+ properties, tens of millions of active members. Design at this scale is less about invention than precision.',
-    images: [ASSETS.proj1, ASSETS.proj3, ASSETS.proj5],
+    images: [ASSETS.marriott, ASSETS.marriott, ASSETS.marriott],
     prose: [
       { type: 'p', text: 'The engagement focused on several high-traffic member-facing screens: the dashboard, the points activity view, and the offer discovery experience. Each had accrued years of incremental additions that compromised the original hierarchy and made the interface harder to parse at a glance.' },
       { type: 'h2', text: 'Process' },
@@ -989,3 +987,4 @@ function showProject(id) { showPage(id); }
 </script>
 </body>
 </html>
+
