@@ -52,6 +52,18 @@ button { background: none; border: none; cursor: pointer; font: inherit; }
   --px: 256px;
   --nav-h: 80px;
 }
+@media (max-width: 1400px) {
+  :root { --px: 160px; }
+}
+@media (max-width: 1200px) {
+  :root { --px: 96px; }
+}
+@media (max-width: 900px) {
+  :root { --px: 48px; }
+}
+@media (max-width: 600px) {
+  :root { --px: 24px; }
+}
 /* ── VIEW SYSTEM ── */
 .page { display: none; }
 .page.active { display: block; }
@@ -70,7 +82,7 @@ nav {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 96px;
+  padding: 0 var(--px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -113,8 +125,8 @@ nav {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 96px;
-  padding-right: 96px;
+  padding-left: var(--px);
+  padding-right: var(--px);
 }
 /* Nav outer element should match */
 
@@ -127,7 +139,8 @@ nav {
    HOME PAGE
 ──────────────────────────────────────── */
 .home-hero {
-  padding: 160px 0 80px;
+  padding-top: 160px;
+  padding-bottom: 80px;
 }
 .home-hero h1 {
   font-size: var(--h1-size);
@@ -138,7 +151,7 @@ nav {
   max-width: 900px;
 }
 /* ── WORK GRID ── */
-.work-section { padding: 0; }
+.work-section { padding-top: 0; padding-bottom: 0; }
 .work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -243,7 +256,8 @@ nav {
 }
 /* ── CONTACT SECTION ── */
 .home-contact {
-  padding: 80px 0 160px;
+  padding-top: 80px;
+  padding-bottom: 160px;
 }
 .contact-grid {
   display: grid;
@@ -293,13 +307,13 @@ nav {
 .footer-inner {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 160px 96px;
+  padding: 160px var(--px);
   position: relative;
 }
 .footer-inner::before {
   content: '';
   position: absolute;
-  top: 0; left: 96px; right: 96px;
+  top: 0; left: var(--px); right: var(--px);
   height: 2px;
   background: var(--black);
 }
@@ -333,7 +347,7 @@ nav {
 /* ────────────────────────────────────────
    ABOUT PAGE
 ──────────────────────────────────────── */
-.about-header { padding: 160px 0 0; }
+.about-header { padding-top: 160px; padding-bottom: 0; }
 .about-header h1 {
   font-size: var(--h1-size);
   font-weight: 500;
@@ -343,7 +357,7 @@ nav {
   max-width: 900px;
 }
 .about-body-text {
-  padding: 0 0 80px;
+  padding-bottom: 80px;
   margin-top: 40px;
 }
 .about-body-text p {
@@ -355,7 +369,8 @@ nav {
   max-width: 1408px;
 }
 .about-image-wrap {
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .about-image-wrap img {
   width: 100%;
@@ -365,7 +380,7 @@ nav {
   object-fit: cover;
 }
 .about-skills {
-  padding: 160px 0 0;
+  padding-top: 160px;
 }
 .about-skills-grid {
   display: grid;
@@ -393,7 +408,8 @@ nav {
    PROJECT PAGE
 ──────────────────────────────────────── */
 .project-header {
-  padding: 160px 0;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 .project-header-grid {
   display: grid;
@@ -428,7 +444,8 @@ nav {
 }
 .project-back:hover { color: var(--black); }
 .project-images {
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -457,8 +474,8 @@ nav {
   color: var(--boulder);
 }
 .project-prose {
-  padding: 160px 0;
-  max-width: 700px;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 .project-prose p {
   font-size: var(--body-size);
@@ -498,13 +515,13 @@ nav {
 .other-work-inner {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 160px 96px;
+  padding: 160px var(--px);
   position: relative;
 }
 .other-work-inner::before {
   content: '';
   position: absolute;
-  top: 0; left: 96px; right: 96px;
+  top: 0; left: var(--px); right: var(--px);
   height: 2px;
   background: var(--black);
 }
