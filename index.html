@@ -408,8 +408,8 @@ nav {
    PROJECT PAGE
 ──────────────────────────────────────── */
 .project-header {
-  padding-top: 160px;
-  padding-bottom: 160px;
+  padding-top: 80px;
+  padding-bottom: 48px;
 }
 .project-header-grid {
   display: grid;
@@ -474,8 +474,13 @@ nav {
   color: var(--boulder);
 }
 .project-prose {
-  padding-top: 160px;
-  padding-bottom: 160px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: var(--px);
+  padding-right: var(--px);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(700px + (var(--px) * 2));
 }
 .project-prose p {
   font-size: var(--body-size);
@@ -972,7 +977,7 @@ PROJECTS.forEach(p => {
 
     <div class="project-images bounded">${imgsHTML}</div>
 
-    <div class="project-prose bounded">${proseHTML}</div>
+    <div class="project-prose">${proseHTML}</div>
 
     <div class="other-work-section">
       <div class="other-work-inner">
