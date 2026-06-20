@@ -517,7 +517,6 @@ nav {
   border-radius: 12px;
   overflow: hidden;
   background: var(--wild-sand);
-  margin: 0 0 32px;
 }
 .prose-media video,
 .prose-media img {
@@ -528,9 +527,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin: 0 0 32px;
 }
-.prose-media-grid .prose-media { margin-bottom: 0; }
 @media (max-width: 700px) {
   .prose-media-grid { grid-template-columns: 1fr; }
 }
@@ -991,13 +988,28 @@ PROJECTS.forEach(p => {
     }
     return `<div class="project-img"><img src="${src}" alt="" onerror="this.parentElement.className='project-img-placeholder';this.remove();this.parentElement.textContent='Project imagery';" style="width:100%;display:block;"></div>`;
   }).join('');
-  const proseHTML = p.prose.map(s => {
-    if (s.type === 'h2') return `<h2>${s.text}</h2>`;
-    if (s.type === 'bq') return `<div class="project-blockquote">${s.text}</div>`;
-    if (s.type === 'video') return `<div class="prose-media"><video src="${s.src}" autoplay loop muted playsinline></video></div>`;
-    if (s.type === 'img') return `<div class="prose-media"><img src="${s.src}" alt=""></div>`;
-    if (s.type === 'media-grid') return `<div class="prose-media-grid">${s.items.map(src => `<div class="prose-media"><img src="${src}" alt=""></div>`).join('')}</div>`;
-    return `<p>${s.text}</p>`;
+  const proseBlocks = [];
+  p.prose.forEach(s => {
+    const kind = (s.type === 'video' || s.type === 'img' || s.type === 'media-grid') ? 'media' : 'text';
+    const last = proseBlocks[proseBlocks.length - 1];
+    if (last && last.kind === kind) last.items.push(s);
+    else proseBlocks.push({ kind, items: [s] });
+  });
+  const proseHTML = proseBlocks.map(block => {
+    if (block.kind === 'text') {
+      const inner = block.items.map(s => {
+        if (s.type === 'h2') return `<h2>${s.text}</h2>`;
+        if (s.type === 'bq') return `<div class="project-blockquote">${s.text}</div>`;
+        return `<p>${s.text}</p>`;
+      }).join('');
+      return `<div class="project-prose">${inner}</div>`;
+    }
+    const inner = block.items.map(s => {
+      if (s.type === 'video') return `<div class="project-img"><video src="${s.src}" autoplay loop muted playsinline style="width:100%;display:block;"></video></div>`;
+      if (s.type === 'img') return `<div class="project-img"><img src="${s.src}" alt="" style="width:100%;display:block;"></div>`;
+      return `<div class="prose-media-grid">${s.items.map(src => `<div class="prose-media"><img src="${src}" alt=""></div>`).join('')}</div>`;
+    }).join('');
+    return `<div class="project-images bounded">${inner}</div>`;
   }).join('');
   const othersHTML = others.map(o => `
     <div class="other-card" onclick="showProject('${o.id}')">
@@ -1025,7 +1037,7 @@ PROJECTS.forEach(p => {
 
     <div class="project-images bounded">${imgsHTML}</div>
 
-    <div class="project-prose">${proseHTML}</div>
+    ${proseHTML}
 
     <div class="other-work-section">
       <div class="other-work-inner">
