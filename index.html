@@ -866,7 +866,11 @@ const PROJECTS = [
     thumb: ASSETS.advamed,
     pat: 'pat-5',
     intro: 'Conference and event design for AdvaMed — the world\'s largest medical technology trade association. Scale, credibility, and clarity in equal measure.',
-    images: [ASSETS.advamed, ASSETS.advamed, ASSETS.advamed],
+    images: [
+      'images/advamed/advamed_case-study_00.mp4',
+      'images/advamed/advamed_case-study_07.mp4',
+      'images/advamed/advamed_case-study_01.png',
+    ],
     prose: [
       { type: 'p', text: 'AdvaMed\'s annual conference brings together thousands of medtech executives, clinicians, and policymakers. The design scope covered the full event graphic environment — from pre-conference campaign materials to on-site exhibition graphics and post-event digital content.' },
       { type: 'h2', text: 'Environmental design' },
@@ -958,9 +962,12 @@ const track = document.getElementById('ticker-track');
 const container = document.getElementById('project-pages');
 PROJECTS.forEach(p => {
   const others = PROJECTS.filter(r => r.id !== p.id).slice(0, 2);
-  const imgsHTML = p.images.map(src =>
-    `<div class="project-img"><img src="${src}" alt="" onerror="this.parentElement.className='project-img-placeholder';this.remove();this.parentElement.textContent='Project imagery';" style="width:100%;display:block;"></div>`
-  ).join('');
+  const imgsHTML = p.images.map(src => {
+    if (/\.mp4$/i.test(src)) {
+      return `<div class="project-img"><video src="${src}" autoplay loop muted playsinline style="width:100%;display:block;"></video></div>`;
+    }
+    return `<div class="project-img"><img src="${src}" alt="" onerror="this.parentElement.className='project-img-placeholder';this.remove();this.parentElement.textContent='Project imagery';" style="width:100%;display:block;"></div>`;
+  }).join('');
   const proseHTML = p.prose.map(s => {
     if (s.type === 'h2') return `<h2>${s.text}</h2>`;
     if (s.type === 'bq') return `<div class="project-blockquote">${s.text}</div>`;
