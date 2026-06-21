@@ -772,7 +772,7 @@ const ASSETS = {
   advamed:     'images/image_5.png',
   deliver:     'images/image_6.png',
   astrazeneca: 'images/image_7.png',
-  marriott:    'images/image_8.png',
+  srp:         'images/image_8.png',
 
 };
 // ── INLINE SVG LOGOS ──────────────────────────────────────────
@@ -963,19 +963,26 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'marriott',
-    name: 'Marriott International',
-    type: 'UX design',
-    thumb: ASSETS.marriott,
+    id: 'srp',
+    name: 'Salt River Project',
+    type: 'Digital & print design',
+    thumb: ASSETS.srp,
     pat: 'pat-8',
-    intro: 'UX design for one of the world\'s largest hotel loyalty programs — 30 brands, 8,000+ properties, tens of millions of active members. Design at this scale is less about invention than precision.',
-    images: [ASSETS.marriott, ASSETS.marriott, ASSETS.marriott],
+    intro: 'Campaign design for Salt River Project\'s ENERGY STAR rebate programs — reaching Phoenix-area homebuilders and residents across web, print, and event channels in both English and Spanish.',
+    images: [
+      'images/srp/srp_case-study_01.png',
+      'images/srp/srp_case-study_02.png',
+      'images/srp/srp_case-study_03.png',
+      'images/srp/srp_case-study_04.png',
+      'images/srp/srp_case-study_05.png',
+    ],
     prose: [
-      { type: 'p', text: 'The engagement focused on several high-traffic member-facing screens: the dashboard, the points activity view, and the offer discovery experience. Each had accrued years of incremental additions that compromised the original hierarchy and made the interface harder to parse at a glance.' },
-      { type: 'h2', text: 'Process' },
-      { type: 'p', text: 'The work began with an audit of existing screens against the Bonvoy design system — identifying where components were being used inconsistently, where hierarchy had been diluted, and where user testing data pointed to confusion. Findings were documented and prioritized before any redesign work began.' },
-      { type: 'bq', text: 'Design at this scale is less about invention than about precision.' },
-      { type: 'p', text: 'Proposed changes were scoped to work within the existing component library wherever possible, to reduce engineering overhead and maintain brand continuity. Where gaps in the system required new components, these were documented with usage guidelines and handed off for review.' },
+      { type: 'p', text: 'SRP\'s ENERGY STAR Homes and Multifamily New Construction programs needed materials that worked for two distinct audiences — homebuilders evaluating program incentives, and residents weighing energy-saving upgrades — without fragmenting into two disconnected visual systems.' },
+      { type: 'h2', text: 'Program campaign' },
+      { type: 'p', text: 'A program landing page anchored the campaign, laying out incentives, eligibility, and next steps for builders considering ENERGY STAR certification. The same content architecture adapted across desktop, tablet, and mobile breakpoints to support a primarily mobile audience scanning at job sites and open houses.' },
+      { type: 'bq', text: 'Materials had to work for two audiences without splitting into two visual systems.' },
+      { type: 'h2', text: 'Print & bilingual collateral' },
+      { type: 'p', text: 'Community outreach materials — event flyers, door hangers, and retractable banners — were produced in parallel English and Spanish versions, maintaining identical layouts and hierarchy so neither language read as secondary. Bilingual production added a layer of QA to the standard process, with every line of translated copy reviewed for length and fit before files went to print.' },
     ]
   },
 ];
