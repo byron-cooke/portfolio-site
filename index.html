@@ -606,14 +606,30 @@ nav {
    RESPONSIVE / MOBILE
 ──────────────────────────────────────── */
 
+/* Prevent any stray element from triggering page-level horizontal scroll */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* ── WIDE TABLET / SMALL LAPTOP (≤ 1350px) ── */
+/* about-skills-grid uses 3 × 334px = 1002px min — clips on iPad landscape.
+   Switch to four fluid columns at this breakpoint so it stays within any viewport. */
+@media (max-width: 1350px) {
+  .about-skills-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
 /* ── TABLET (≤ 900px) ── */
 @media (max-width: 900px) {
-  /* About skills: fixed cols → 2 equal cols */
+  /* About skills: 4 fluid cols → 2 cols (label spans both) */
   .about-skills-grid {
     grid-template-columns: 1fr 1fr;
     gap: 48px 24px;
   }
   .skills-label { grid-column: 1 / -1; }
+  /* Contact: fixed 334px label col → fully fluid */
+  .contact-grid {
+    grid-template-columns: 200px 1fr;
+  }
   /* Footer: 4 cols → 2 cols */
   .footer-grid {
     grid-template-columns: 1fr 1fr;
