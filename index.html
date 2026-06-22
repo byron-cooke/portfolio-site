@@ -601,6 +601,108 @@ nav {
   color: var(--boulder);
   text-align: right;
 }
+
+/* ────────────────────────────────────────
+   RESPONSIVE / MOBILE
+──────────────────────────────────────── */
+
+/* ── TABLET (≤ 900px) ── */
+@media (max-width: 900px) {
+  /* About skills: fixed cols → 2 equal cols */
+  .about-skills-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 24px;
+  }
+  .skills-label { grid-column: 1 / -1; }
+  /* Footer: 4 cols → 2 cols */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── MOBILE (≤ 600px) ── */
+@media (max-width: 600px) {
+
+  /* Prevent any element from blowing out the viewport */
+  body { overflow-x: hidden; }
+
+  /* Scale heading down */
+  :root {
+    --h1-size: 36px;
+    --h1-lh: 42px;
+    --h1-ls: -0.8px;
+    --body-size: 18px;
+    --body-lh: 28px;
+  }
+
+  /* ── HERO ── */
+  .home-hero {
+    padding-top: 64px;
+    padding-bottom: 48px;
+  }
+
+  /* ── WORK GRID: 2 cols → 1 col ── */
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* ── TICKER ── */
+  .ticker-section { margin-top: 48px; padding: 48px 0; }
+
+  /* ── CONTACT ── */
+  .home-contact { padding-top: 48px; padding-bottom: 80px; }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-label { margin-bottom: 8px; }
+  /* Contact rows: show label + arrow, hide the redundant value on narrow screens */
+  .contact-row {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .contact-row-value { display: none; }
+
+  /* ── FOOTER ── */
+  .footer-inner { padding: 64px var(--px); }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* ── ABOUT PAGE ── */
+  .about-header { padding-top: 64px; }
+  .about-body-text { margin-top: 24px; padding-bottom: 48px; }
+  .about-skills { padding-top: 64px; }
+  .about-skills-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .skills-label { margin-bottom: 24px; }
+  .skills-col { gap: 0; }
+
+  /* ── PROJECT PAGES ── */
+  .project-header { padding-top: 48px; padding-bottom: 32px; }
+  /* Stack title + intro vertically */
+  .project-header-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-prose {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .project-images { padding-bottom: 48px; }
+
+  /* ── OTHER WORK: 2 cols → 1 col ── */
+  .other-work-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .other-work-inner { padding: 64px var(--px); }
+}
+
 </style>
 </head>
 <body>
@@ -694,7 +796,7 @@ nav {
     <p style="margin-top:2rem;">I enjoy building clean, impactful visuals that balance strong aesthetics with clear communication and strategic thinking. Whether collaborating with marketers, developers, creative directors, or stakeholders, I value being someone who can translate ideas into polished, effective creative solutions. I work across industry-standard creative, web, presentation, and AI-assisted design platforms to streamline workflows while maintaining a strong visual perspective and attention to detail.</p>
   </div>
   <div class="about-image-wrap bounded">
-    <img src="https://www.figma.com/api/mcp/asset/d75227fe-2b94-4844-a494-08106397f001" alt="Byron Cooke" onerror="var d=document.createElement('div');d.style.cssText='width:100%;border-radius:20px;min-height:600px;background:#f5f5f5;';this.parentNode.replaceChild(d,this);">
+    <img src="images/about-pic.jpg" alt="Byron Cooke" onerror="this.style.cssText='width:100%;border-radius:20px;min-height:600px;background:#f5f5f5;display:block;'">
   </div>
   <div class="about-skills bounded">
     <div class="about-skills-grid">
